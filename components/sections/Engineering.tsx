@@ -83,7 +83,7 @@ export default function Engineering() {
             <div className="w-20 h-1 bg-cyan-400 rounded-full" />
           </div>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Development isn't just writing code—it's crafting solutions that solve real problems at scale
+            Development isn&apos;t just writing code—it&apos;s crafting solutions that solve real problems at scale
           </p>
         </motion.div>
 

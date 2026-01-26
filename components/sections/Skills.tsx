@@ -183,9 +183,10 @@ export default function Skills() {
       observer.observe(sectionRef.current)
     }
 
+    const currentRef = sectionRef.current
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
+      if (currentRef) {
+        observer.unobserve(currentRef)
       }
     }
   }, [])
@@ -214,8 +215,8 @@ export default function Skills() {
               key={category}
               onClick={() => setSelectedCategory(category)}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 border capitalize ${selectedCategory === category
-                  ? 'bg-cyan-400 text-black border-cyan-400 glow-cyan'
-                  : 'border-cyan-400/30 text-gray-400 hover:border-cyan-400'
+                ? 'bg-cyan-400 text-black border-cyan-400 glow-cyan'
+                : 'border-cyan-400/30 text-gray-400 hover:border-cyan-400'
                 }`}
               whileHover={{ scale: 1.05 }}
             >

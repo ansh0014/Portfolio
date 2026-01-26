@@ -79,12 +79,12 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-gradient-primary mb-6">Let's Connect</h2>
+          <h2 className="text-5xl md:text-6xl font-bold text-gradient-primary mb-6">Let&apos;s Connect</h2>
           <div className="flex justify-center">
             <div className="w-20 h-1 bg-cyan-400 rounded-full" />
           </div>
           <p className="text-gray-400 text-lg mt-8 max-w-2xl mx-auto">
-            I'm always interested in hearing about new opportunities and collaborations. Reach out anytime!
+            I&apos;m always interested in hearing about new opportunities and collaborations. Reach out anytime!
           </p>
         </motion.div>
 
@@ -160,12 +160,12 @@ export default function Contact() {
 
             <div className="text-center relative z-10 space-y-6">
               <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-orange-500">
-                Got a Vision? Let's Build It.
+                Got a Vision? Let&apos;s Build It.
               </h3>
 
               <p className="text-gray-300 text-lg leading-relaxed max-w-md mx-auto">
-                I'm always ready to collaborate on innovative projects that challenge the status quo.
-                From high-scale backends to complex system architectures—let's turn your ideas into deployed reality.
+                I&apos;m always ready to collaborate on innovative projects that challenge the status quo.
+                From high-scale backends to complex system architectures—let&apos;s turn your ideas into deployed reality.
               </p>
 
               <div className="pt-4">
@@ -175,7 +175,7 @@ export default function Contact() {
               </div>
             </div>
           </motion.div>
-        </div>
+        </div >
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -185,7 +185,7 @@ export default function Contact() {
         >
           <p className="text-gray-600 text-xs mt-4">© 2024 Anshul Jagota. All rights reserved.</p>
         </motion.div>
-      </div>
-    </section>
+      </div >
+    </section >
   )
 }

@@ -89,7 +89,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <p className="text-gray-400 text-base font-medium">Hi, I'm</p>
+              <p className="text-gray-400 text-base font-medium">Hi, I&apos;m</p>
             </motion.div>
 
             <motion.h1
@@ -147,7 +147,7 @@ export default function Hero() {
                   whileTap={{ scale: 0.95 }}
                   className="px-9 py-4 border-2 border-orange-500 text-orange-500 font-semibold rounded-lg hover:bg-orange-500 hover:text-black transition-all duration-300 glow-orange w-full sm:w-auto"
                 >
-                  Let's Connect
+                  Let&apos;s Connect
                 </motion.button>
               </Link>
             </motion.div>
