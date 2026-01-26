@@ -153,7 +153,7 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          <div className="lg:col-span-6 flex items-center justify-center relative h-full min-h-[600px] w-full">
+          <div className="hidden lg:flex lg:col-span-6 items-center justify-center relative h-full min-h-[600px] w-full">
             <TechArc />
           </div>
         </div>
