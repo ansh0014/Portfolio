@@ -102,13 +102,15 @@ export default function Hero() {
       />
 
       {/* ── Main content ──────────────────────────────────────── */}
-      <div style={{
-        position: 'relative', zIndex: 3,
-        padding: '0 3rem 4.5rem',
-        maxWidth: '1280px',
-        width: '100%',
-        margin: '0 auto',
-      }}>
+      <div 
+        className="px-6 pb-12 md:px-12 md:pb-16 lg:px-24"
+        style={{
+          position: 'relative', zIndex: 3,
+          maxWidth: '1280px',
+          width: '100%',
+          margin: '0 auto',
+        }}
+      >
         {/* Role label */}
         <motion.p
           initial={{ opacity: 0, y: 8 }}
@@ -149,12 +151,9 @@ export default function Hero() {
         </div>
 
         {/* Bottom row: bio + stats */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr auto',
-          gap: '4rem',
-          alignItems: 'flex-end',
-        }}>
+        <div 
+          className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-16 items-start lg:items-end"
+        >
           {/* Bio */}
           <div>
             <motion.p
@@ -219,10 +218,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 1.9, duration: 0.7 }}
-            style={{
-              display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem 2.5rem',
-              textAlign: 'right',
-            }}
+            className="grid grid-cols-2 gap-x-8 gap-y-6 lg:text-right mt-8 lg:mt-0"
           >
             {stats.map((s, i) => (
               <motion.div key={i}

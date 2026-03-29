@@ -39,9 +39,9 @@ export default function Projects() {
   return (
     <section
       id="projects"
+      className="px-6 py-24 md:px-12 md:py-32 lg:px-24"
       style={{
         minHeight: '100vh',
-        padding: '8rem 1.5rem',
         background: 'radial-gradient(ellipse at 70% 0%, rgba(59,130,246,0.06) 0%, transparent 55%), #0A0A0F',
         position: 'relative',
       }}
@@ -80,12 +80,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              style={{
-                borderTop: '1px solid rgba(59,130,246,0.1)',
-                padding: '4rem 0',
-                display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem',
-                alignItems: 'center', cursor: 'none',
-              }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center py-16 border-t border-[rgba(59,130,246,0.1)] cursor-none"
             >
               {/* Left: index + title */}
               <div>

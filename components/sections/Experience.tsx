@@ -29,9 +29,9 @@ export default function Experience() {
   return (
     <section
       id="experience"
+      className="px-6 py-24 md:px-12 md:py-32 lg:px-24"
       style={{
         minHeight: '80vh',
-        padding: '8rem 1.5rem',
         background: 'radial-gradient(ellipse at 60% 30%, rgba(59,130,246,0.05) 0%, transparent 55%), #0A0A0F',
         position: 'relative',
       }}
@@ -75,7 +75,7 @@ export default function Experience() {
           >
             {/* Period + role header */}
             <div style={{
-              display: 'grid', gridTemplateColumns: '1fr auto', gap: '2rem',
+              display: 'flex', flexDirection: 'column', gap: '2rem',
               alignItems: 'flex-start', marginBottom: '2.5rem',
             }}>
               <div>

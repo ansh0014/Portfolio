@@ -24,9 +24,10 @@ export default function Contact() {
   return (
     <section
       id="contact"
+      className="px-6 py-24 md:px-12 md:py-32 lg:px-24"
       style={{
         minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        padding: '8rem 1.5rem', background: '#0A0A0F',
+        background: '#0A0A0F',
         position: 'relative', overflow: 'hidden',
       }}
     >

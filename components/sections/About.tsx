@@ -6,12 +6,12 @@ export default function About() {
   return (
     <section
       id="about"
+      className="px-6 py-24 md:px-12 md:py-32 lg:px-24"
       style={{
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '8rem 3rem',
         position: 'relative',
         background: `
           radial-gradient(ellipse at 30% 50%, rgba(59,130,246,0.06) 0%, transparent 55%),

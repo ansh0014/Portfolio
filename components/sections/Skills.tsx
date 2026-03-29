@@ -74,9 +74,9 @@ export default function Skills() {
     <section
       id="skills"
       ref={sectionRef}
+      className="px-6 py-24 md:px-12 md:py-32 lg:px-24"
       style={{
         minHeight: '100vh',
-        padding: '10rem 3rem',
         background: `
           radial-gradient(ellipse at 80% 20%, rgba(59,130,246,0.12) 0%, transparent 65%),
           radial-gradient(ellipse at 10% 80%, rgba(59,130,246,0.08) 0%, transparent 55%),
@@ -127,6 +127,7 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: catIdx * 0.15 }}
               viewport={{ once: true }}
+              className="p-6 md:p-10 lg:p-12"
               style={{
                 breakInside: 'avoid',
                 marginBottom: '2.5rem',
@@ -134,7 +135,6 @@ export default function Skills() {
                 border: '1px solid rgba(59,130,246,0.15)',
                 borderTop: '1px solid rgba(59,130,246,0.3)',
                 borderRadius: '16px',
-                padding: '3rem 2.5rem',
                 backdropFilter: 'blur(12px)',
                 boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
               }}
