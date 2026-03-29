@@ -23,6 +23,7 @@ const skillCategories = [
     icon: '{ }',
     skills: [
       { name: 'Microservices', note: 'Design Pattern' },
+      { name: 'gRPC', note: 'RPC Framework' },
       { name: 'REST APIs', note: 'HTTP/JSON' },
       { name: 'System Design', note: 'Distributed' },
       { name: 'Low-Level Prog.', note: 'Memory/Perf' },
@@ -169,6 +170,7 @@ export default function Skills() {
                     variants={item}
                     style={{
                       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                      flexWrap: 'wrap', gap: '0.5rem',
                       padding: '1rem',
                       background: 'rgba(59,130,246,0.03)',
                       border: '1px solid rgba(255,255,255,0.03)',
@@ -191,17 +193,18 @@ export default function Skills() {
                   >
                     <span style={{
                       fontFamily: 'DM Sans, sans-serif', fontWeight: 400,
-                      fontSize: '1.2rem', color: '#F3F4F6',
-                      letterSpacing: '0.02em',
+                      fontSize: 'clamp(1.05rem, 1.5vw, 1.15rem)', color: '#F3F4F6',
+                      letterSpacing: '0.02em', lineHeight: 1.2,
+                      flex: '1 1 auto', marginRight: '1rem',
                     }}>
                       {skill.name}
                     </span>
                     <span style={{
                       fontFamily: 'DM Sans, sans-serif', fontWeight: 400,
-                      fontSize: '0.75rem', letterSpacing: '0.15em',
+                      fontSize: '0.7rem', letterSpacing: '0.15em',
                       textTransform: 'uppercase',
                       color: '#60A5FA',
-                      paddingLeft: '1rem', textAlign: 'right', flexShrink: 0,
+                      textAlign: 'right', flexShrink: 0,
                     }}>
                       {skill.note}
                     </span>
