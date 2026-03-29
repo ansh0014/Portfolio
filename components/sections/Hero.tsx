@@ -103,9 +103,9 @@ export default function Hero() {
 
       {/* ── Main content ──────────────────────────────────────── */}
       <div 
-        className="px-6 pb-12 md:px-12 md:pb-16 lg:px-24"
         style={{
           position: 'relative', zIndex: 3,
+          padding: 'clamp(3rem, 5vw, 6rem) clamp(1.5rem, 5vw, 6rem) clamp(6rem, 8vw, 10rem)',
           maxWidth: '1280px',
           width: '100%',
           margin: '0 auto',

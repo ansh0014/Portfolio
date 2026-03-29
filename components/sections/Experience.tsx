@@ -29,9 +29,9 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="px-6 py-24 md:px-12 md:py-32 lg:px-24"
       style={{
         minHeight: '80vh',
+        padding: 'clamp(6rem, 12vw, 10rem) clamp(1.5rem, 5vw, 6rem)',
         background: 'radial-gradient(ellipse at 60% 30%, rgba(59,130,246,0.05) 0%, transparent 55%), #0A0A0F',
         position: 'relative',
       }}

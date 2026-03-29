@@ -39,9 +39,9 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="px-6 py-24 md:px-12 md:py-32 lg:px-24"
       style={{
         minHeight: '100vh',
+        padding: 'clamp(6rem, 12vw, 10rem) clamp(1.5rem, 5vw, 6rem)',
         background: 'radial-gradient(ellipse at 70% 0%, rgba(59,130,246,0.06) 0%, transparent 55%), #0A0A0F',
         position: 'relative',
       }}
