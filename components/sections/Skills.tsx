@@ -117,9 +117,8 @@ export default function Skills() {
 
         {/* Skill Columns (Cards instead of bare borders) */}
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '2.5rem',
+          columns: 'auto 320px',
+          columnGap: '2.5rem',
         }}>
           {skillCategories.map((cat, catIdx) => (
             <motion.div
@@ -129,6 +128,8 @@ export default function Skills() {
               transition={{ duration: 0.7, delay: catIdx * 0.15 }}
               viewport={{ once: true }}
               style={{
+                breakInside: 'avoid',
+                marginBottom: '2.5rem',
                 background: 'rgba(17, 19, 26, 0.4)',
                 border: '1px solid rgba(59,130,246,0.15)',
                 borderTop: '1px solid rgba(59,130,246,0.3)',
