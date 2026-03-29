@@ -115,11 +115,8 @@ export default function Skills() {
           }} />
         </motion.div>
 
-        {/* Skill Columns (Cards instead of bare borders) */}
-        <div style={{
-          columns: 'auto 320px',
-          columnGap: '2.5rem',
-        }}>
+        {/* Skill Columns (Cards) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 items-start">
           {skillCategories.map((cat, catIdx) => (
             <motion.div
               key={cat.id}
@@ -127,10 +124,8 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: catIdx * 0.15 }}
               viewport={{ once: true }}
-              className="p-6 md:p-10 lg:p-12"
+              className="p-6 md:p-8"
               style={{
-                breakInside: 'avoid',
-                marginBottom: '2.5rem',
                 background: 'rgba(17, 19, 26, 0.4)',
                 border: '1px solid rgba(59,130,246,0.15)',
                 borderTop: '1px solid rgba(59,130,246,0.3)',
