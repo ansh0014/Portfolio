@@ -1,154 +1,152 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ExternalLink, Github } from 'lucide-react'
 
-interface Project {
-  id: string
-  title: string
-  description: string
-  technologies: string[]
-  features: string[]
-  link?: string
-  github?: string
-  highlights: string[]
-}
-
-const projects: Project[] = [
+const projects = [
   {
     id: '1',
+    index: '01',
     title: 'Universal Ticket Booking System',
-    description: 'Distributed Go-based microservices SDK enabling bookings across events, flights, and transport services with automated CI/CD and real-time scaling.',
-    technologies: ['Go', 'Google Cloud Platform', 'Microservices', 'Jenkins', 'Docker'],
-    features: ['Distributed transactions', 'Real-time scaling', 'Automated CI/CD', 'Multi-service orchestration'],
-    highlights: ['1,000+ bookings per second', '25% reduction in deployment failures', 'Daily release frequency'],
-    link: '#',
-    github: '#',
+    descriptor: 'Distributed Go microservices SDK — 1,000+ bookings per second across events, flights, transport.',
+    tags: ['Go', 'Google Cloud', 'Microservices', 'Jenkins', 'Docker'],
+    metric: '1,000+ TPS',
+    accent: 'rgba(59,130,246,0.12)',
+    accentBorder: 'rgba(59,130,246,0.2)',
   },
   {
     id: '2',
-    title: 'MiniRedis — Multi-Tenant Redis-as-a-Service',
-    description: 'Multi-tenant RaaS platform with isolated instances, containerized microservices architecture, and automated CI/CD pipeline.',
-    technologies: ['C++', 'Go', 'Python', 'Docker', 'Kubernetes', 'NGINX'],
-    features: ['Multi-tenant isolation', 'Auto-scaling instances', 'Container orchestration', 'Load balancing'],
-    highlights: ['5,000-10,000 ops/sec per node', '100+ isolated instances', '60% faster deployment', '85% reduction in config drift'],
-    link: '#',
-    github: '#',
+    index: '02',
+    title: 'MiniRedis — Multi-Tenant RaaS',
+    descriptor: 'Multi-tenant Redis-as-a-Service with containerized isolation and automated CI/CD. 5,000–10,000 ops/sec per node.',
+    tags: ['C++', 'Go', 'Docker', 'Kubernetes', 'NGINX'],
+    metric: '10K ops/sec',
+    accent: 'rgba(59,130,246,0.08)',
+    accentBorder: 'rgba(59,130,246,0.15)',
   },
   {
     id: '3',
-    title: 'Pebbel – AI Voice Assistant for PC',
-    description: 'AI-driven desktop voice assistant powered by Groq LLM with context-aware responses, OCR-based visual parsing, and system automation.',
-    technologies: ['Python', 'Groq LLM', 'OCR', 'Voice Recognition'],
-    features: ['Context-aware responses', 'Real-time OCR parsing', 'System automation', 'Multi-modal understanding'],
-    highlights: ['45% increase in task efficiency', '2x faster response latency', 'Real-time context awareness'],
-    link: '#',
-    github: '#',
+    index: '03',
+    title: 'Pebbel — AI Voice Assistant',
+    descriptor: 'AI-driven desktop voice assistant with Groq LLM, real-time OCR parsing, and system automation. 45% efficiency gain.',
+    tags: ['Python', 'Groq LLM', 'OCR', 'Voice Recognition'],
+    metric: '2× faster response',
+    accent: 'rgba(59,130,246,0.06)',
+    accentBorder: 'rgba(59,130,246,0.12)',
   },
 ]
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative py-32 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section
+      id="projects"
+      style={{
+        minHeight: '100vh',
+        padding: '8rem 1.5rem',
+        background: 'radial-gradient(ellipse at 70% 0%, rgba(59,130,246,0.06) 0%, transparent 55%), #0A0A0F',
+        position: 'relative',
+      }}
+    >
+      <div style={{ maxWidth: '960px', margin: '0 auto' }}>
+        {/* Section label */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          style={{ marginBottom: '5rem' }}
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-gradient-primary mb-6">Featured Work</h2>
-          <div className="flex justify-center">
-            <div className="w-20 h-1 bg-cyan-400 rounded-full" />
-          </div>
+          <p style={{
+            fontFamily: 'DM Sans, sans-serif', fontWeight: 300,
+            fontSize: '0.75rem', letterSpacing: '0.25em', textTransform: 'uppercase',
+            color: 'rgba(59,130,246,0.8)', marginBottom: '1rem',
+          }}>
+            Selected Work
+          </p>
+          <h2 style={{
+            fontFamily: '"Cormorant Garamond", Georgia, serif', fontWeight: 200,
+            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', letterSpacing: '0.06em',
+            color: '#E5E7EB', lineHeight: 1.05, margin: 0,
+          }}>
+            Featured Projects
+          </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
-          {projects.map((project, index) => (
+        {/* Project Entries */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+          {projects.map((project, i) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -8 }}
-              className="group relative card-glass rounded-2xl p-8 overflow-hidden cursor-pointer"
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              style={{
+                borderTop: '1px solid rgba(59,130,246,0.1)',
+                padding: '4rem 0',
+                display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem',
+                alignItems: 'center', cursor: 'none',
+              }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/5 via-transparent to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-              <div className="relative z-10">
-                <div className="flex items-start justify-between mb-6">
-                  <h3 className="text-2xl md:text-3xl font-bold text-white">{project.title}</h3>
-                  <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {/* Links hidden as per user request */}
-                  </div>
+              {/* Left: index + title */}
+              <div>
+                <span style={{
+                  fontFamily: 'DM Sans, sans-serif', fontWeight: 300,
+                  fontSize: '0.75rem', letterSpacing: '0.2em',
+                  color: 'rgba(156,163,175,0.5)', display: 'block', marginBottom: '1.5rem',
+                }}>
+                  {project.index}
+                </span>
+                <h3 style={{
+                  fontFamily: '"Cormorant Garamond", Georgia, serif', fontWeight: 200,
+                  fontSize: 'clamp(1.5rem, 3vw, 2.4rem)', letterSpacing: '0.04em',
+                  lineHeight: 1.15, color: '#E5E7EB', marginBottom: '1.5rem',
+                }}>
+                  {project.title}
+                </h3>
+                {/* Bright metric */}
+                <div style={{
+                  display: 'inline-block',
+                  fontFamily: '"Cormorant Garamond", Georgia, serif', fontWeight: 300,
+                  fontSize: '1.1rem', color: '#60A5FA', letterSpacing: '0.06em',
+                  borderBottom: '1px solid rgba(59,130,246,0.3)', paddingBottom: '2px',
+                }}>
+                  {project.metric}
                 </div>
+              </div>
 
-                <p className="text-gray-300 text-base leading-relaxed mb-6">{project.description}</p>
-
-                <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Key Features</h4>
-                  <div className="grid grid-cols-2 gap-2">
-                    {project.features.map((feature, idx) => (
-                      <motion.div
-                        key={idx}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.05 }}
-                        className="text-sm text-gray-400 flex items-center gap-2"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                        {feature}
-                      </motion.div>
-                    ))}
-                  </div>
+              {/* Right: descriptor + tags */}
+              <div
+                style={{
+                  padding: '2rem', borderRadius: '12px',
+                  background: project.accent, border: `1px solid ${project.accentBorder}`,
+                  transition: 'filter 0.4s',
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.filter = 'brightness(1.15)' }}
+                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.filter = 'brightness(0.95)' }}
+              >
+                <p style={{
+                  fontFamily: 'DM Sans, sans-serif', fontWeight: 300,
+                  fontSize: '1rem', lineHeight: 1.8, color: '#9CA3AF', marginBottom: '1.5rem',
+                }}>
+                  {project.descriptor}
+                </p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                  {project.tags.map(tag => (
+                    <span key={tag} style={{
+                      fontFamily: 'DM Sans, sans-serif', fontWeight: 300,
+                      fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase',
+                      color: '#9CA3AF', border: '1px solid rgba(59,130,246,0.15)',
+                      borderRadius: '4px', padding: '0.2rem 0.6rem',
+                    }}>
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-
-                <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Highlights</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {project.highlights.map((highlight, idx) => (
-                      <motion.span
-                        key={idx}
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ delay: idx * 0.05 }}
-                        className="px-3 py-1 rounded-full bg-orange-500/15 border border-orange-500/30 text-orange-500 text-xs font-semibold"
-                      >
-                        {highlight}
-                      </motion.span>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Tech Stack</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, idx) => (
-                      <motion.span
-                        key={idx}
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ delay: idx * 0.03 }}
-                        className="px-3 py-1.5 rounded-lg bg-cyan-400/10 border border-cyan-400/30 text-cyan-400 text-xs font-medium hover:bg-cyan-400/20 transition-all"
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
-                  </div>
-                </div>
-
-                <motion.div className="mt-8 flex gap-4">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex-1 py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/30 text-cyan-400 font-semibold hover:bg-cyan-400/20 hover:border-cyan-400/60 transition-all"
-                  >
-                    View Details
-                  </motion.button>
-                </motion.div>
               </div>
             </motion.div>
           ))}
+          {/* Final border */}
+          <div style={{ borderTop: '1px solid rgba(59,130,246,0.1)' }} />
         </div>
       </div>
     </section>

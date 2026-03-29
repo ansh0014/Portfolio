@@ -1,245 +1,213 @@
 'use client'
 
-import React from "react"
+import { useRef } from 'react'
+import { motion, Variants } from 'framer-motion'
 
-import { motion } from 'framer-motion'
-import { useState, useEffect, useRef } from 'react'
-import {
-  Code2,
-  Database,
-  MessageSquare,
-  Zap,
-  Cloud,
-  Lock,
-  Network,
-  Gauge,
-} from 'lucide-react'
-
-interface Skill {
-  id: string
-  name: string
-  category: string
-  icon: React.ReactNode
-  color: string
-}
-
-const allSkills: Skill[] = [
-  { id: '1', name: 'Go', category: 'languages', icon: <Code2 size={40} />, color: 'text-cyan-400' },
+const skillCategories = [
   {
-    id: '2',
-    name: 'C++',
-    category: 'languages',
-    icon: <Code2 size={40} />,
-    color: 'text-cyan-400',
+    id: 'lang',
+    title: 'Languages',
+    icon: '< / >',
+    skills: [
+      { name: 'Go', note: 'Primary' },
+      { name: 'C++', note: 'Low-level' },
+      { name: 'Python', note: 'Scripting' },
+      { name: 'C', note: 'Systems' },
+      { name: 'SQL', note: 'Queries' },
+      { name: 'JavaScript', note: 'Frontend' },
+    ],
   },
   {
-    id: '3',
-    name: 'Python',
-    category: 'languages',
-    icon: <Code2 size={40} />,
-    color: 'text-cyan-400',
-  },
-  { id: '4', name: 'C', category: 'languages', icon: <Code2 size={40} />, color: 'text-cyan-400' },
-  { id: '5', name: 'SQL', category: 'languages', icon: <Code2 size={40} />, color: 'text-cyan-400' },
-  {
-    id: '6',
-    name: 'Microservices',
-    category: 'backend',
-    icon: <Network size={40} />,
-    color: 'text-orange-500',
-  },
-  {
-    id: '7',
-    name: 'REST APIs',
-    category: 'backend',
-    icon: <MessageSquare size={40} />,
-    color: 'text-orange-500',
+    id: 'backend',
+    title: 'Backend & Architecture',
+    icon: '{ }',
+    skills: [
+      { name: 'Microservices', note: 'Design Pattern' },
+      { name: 'REST APIs', note: 'HTTP/JSON' },
+      { name: 'System Design', note: 'Distributed' },
+      { name: 'Low-Level Prog.', note: 'Memory/Perf' },
+      { name: 'JWT Auth', note: 'Security' },
+      { name: 'Apache Kafka', note: 'Event Stream' },
+      { name: 'Event-Driven', note: 'Architecture' },
+      { name: 'Node.js', note: 'Runtime' },
+    ],
   },
   {
-    id: '8',
-    name: 'System Design',
-    category: 'backend',
-    icon: <Network size={40} />,
-    color: 'text-orange-500',
+    id: 'data',
+    title: 'Data & Storage',
+    icon: '[ ]',
+    skills: [
+      { name: 'PostgreSQL', note: 'Relational' },
+      { name: 'MongoDB', note: 'Document DB' },
+      { name: 'Redis', note: 'In-Memory Cache' },
+    ],
   },
   {
-    id: '9',
-    name: 'Node.js',
-    category: 'backend',
-    icon: <Code2 size={40} />,
-    color: 'text-orange-500',
-  },
-  {
-    id: '10',
-    name: 'Low-Level Programming',
-    category: 'backend',
-    icon: <Zap size={40} />,
-    color: 'text-orange-500',
-  },
-  {
-    id: '11',
-    name: 'JWT Authentication',
-    category: 'backend',
-    icon: <Lock size={40} />,
-    color: 'text-orange-500',
-  },
-  {
-    id: '12',
-    name: 'MongoDB',
-    category: 'databases',
-    icon: <Database size={40} />,
-    color: 'text-cyan-400',
-  },
-  {
-    id: '13',
-    name: 'PostgreSQL',
-    category: 'databases',
-    icon: <Database size={40} />,
-    color: 'text-cyan-400',
-  },
-  {
-    id: '14',
-    name: 'Redis',
-    category: 'databases',
-    icon: <Zap size={40} />,
-    color: 'text-cyan-400',
-  },
-  {
-    id: '15',
-    name: 'Apache Kafka',
-    category: 'distributed',
-    icon: <Network size={40} />,
-    color: 'text-orange-500',
-  },
-  {
-    id: '16',
-    name: 'Event-Driven Architecture',
-    category: 'distributed',
-    icon: <Zap size={40} />,
-    color: 'text-orange-500',
-  },
-  {
-    id: '17',
-    name: 'Docker',
-    category: 'devops',
-    icon: <Cloud size={40} />,
-    color: 'text-cyan-400',
-  },
-  {
-    id: '18',
-    name: 'Kubernetes',
-    category: 'devops',
-    icon: <Network size={40} />,
-    color: 'text-cyan-400',
-  },
-  {
-    id: '19',
-    name: 'CI/CD Pipelines',
-    category: 'devops',
-    icon: <Zap size={40} />,
-    color: 'text-cyan-400',
-  },
-  {
-    id: '20',
-    name: 'NGINX',
-    category: 'networking',
-    icon: <Gauge size={40} />,
-    color: 'text-orange-500',
-  },
-  {
-    id: '21',
-    name: 'Load Balancing',
-    category: 'networking',
-    icon: <Network size={40} />,
-    color: 'text-orange-500',
+    id: 'devops',
+    title: 'DevOps & Cloud',
+    icon: '⟳',
+    skills: [
+      { name: 'Docker', note: 'Containers' },
+      { name: 'Kubernetes', note: 'Orchestration' },
+      { name: 'CI/CD Pipelines', note: 'Automation' },
+      { name: 'Google Cloud', note: 'GCP' },
+      { name: 'NGINX', note: 'Web Server' },
+      { name: 'Jenkins', note: 'Build Server' },
+    ],
   },
 ]
 
-const categories = ['all', 'languages', 'backend', 'databases', 'distributed', 'devops', 'networking']
+const container: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+}
+const item: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+}
 
 export default function Skills() {
-  const [selectedCategory, setSelectedCategory] = useState('all')
-  const [displayedSkills, setDisplayedSkills] = useState<Skill[]>(allSkills)
-  const sectionRef = useRef<HTMLDivElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const filtered =
-      selectedCategory === 'all' ? allSkills : allSkills.filter(skill => skill.category === selectedCategory)
-    setDisplayedSkills(filtered)
-  }, [selectedCategory])
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    const currentRef = sectionRef.current
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef)
-      }
-    }
-  }, [])
+  const sectionRef = useRef<HTMLElement>(null)
 
   return (
-    <section id="skills" ref={sectionRef} className="relative py-32 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section
+      id="skills"
+      ref={sectionRef}
+      style={{
+        minHeight: '100vh',
+        padding: '10rem 3rem',
+        background: `
+          radial-gradient(ellipse at 80% 20%, rgba(59,130,246,0.12) 0%, transparent 65%),
+          radial-gradient(ellipse at 10% 80%, rgba(59,130,246,0.08) 0%, transparent 55%),
+          #0A0A0F
+        `,
+        position: 'relative',
+      }}
+    >
+      <div style={{ maxWidth: '1400px', margin: '0 auto', position: 'relative' }}>
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          style={{ marginBottom: '6rem', textAlign: 'center' }}
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-gradient-primary mb-6">Technical Arsenal</h2>
-          <div className="w-20 h-1 bg-cyan-400 rounded-full mx-auto glow-cyan" />
+          <p style={{
+            fontFamily: 'DM Sans, sans-serif', fontWeight: 300,
+            fontSize: '0.85rem', letterSpacing: '0.35em', textTransform: 'uppercase',
+            color: '#60A5FA', marginBottom: '1.5rem',
+          }}>
+            Capabilities
+          </p>
+          <h2 style={{
+            fontFamily: '"Cormorant Garamond", Georgia, serif', fontWeight: 200,
+            fontSize: 'clamp(3.5rem, 8vw, 6.5rem)', letterSpacing: '0.04em',
+            color: '#F3F4F6', lineHeight: 1.05, margin: 0,
+          }}>
+            Technical Arsenal
+          </h2>
+          <div style={{
+            width: '80px', height: '1px',
+            background: 'linear-gradient(90deg, transparent, #3B82F6, transparent)',
+            margin: '2.5rem auto 0'
+          }} />
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex flex-wrap justify-center gap-3 mb-16"
-        >
-          {categories.map(category => (
-            <motion.button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 border capitalize ${selectedCategory === category
-                ? 'bg-cyan-400 text-black border-cyan-400 glow-cyan'
-                : 'border-cyan-400/30 text-gray-400 hover:border-cyan-400'
-                }`}
-              whileHover={{ scale: 1.05 }}
-            >
-              {category}
-            </motion.button>
-          ))}
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {displayedSkills.map((skill, index) => (
+        {/* Skill Columns (Cards instead of bare borders) */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '2.5rem',
+        }}>
+          {skillCategories.map((cat, catIdx) => (
             <motion.div
-              key={skill.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              whileHover={{ y: -10 }}
-              className="card-glass rounded-xl p-8 text-center h-full flex flex-col items-center justify-between group hover:border-cyan-400/60 hover:shadow-2xl transition-all duration-300"
+              key={cat.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: catIdx * 0.15 }}
+              viewport={{ once: true }}
+              style={{
+                background: 'rgba(17, 19, 26, 0.4)',
+                border: '1px solid rgba(59,130,246,0.15)',
+                borderTop: '1px solid rgba(59,130,246,0.3)',
+                borderRadius: '16px',
+                padding: '3rem 2.5rem',
+                backdropFilter: 'blur(12px)',
+                boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
+              }}
             >
-              <div className={`${skill.color} mb-4 group-hover:rotate-360 transition-transform duration-600`}>
-                {skill.icon}
+              {/* Category header */}
+              <div style={{ marginBottom: '3rem', textAlign: 'center' }}>
+                <span style={{
+                  fontFamily: 'DM Sans, monospace', fontSize: '1.2rem',
+                  color: 'rgba(96,165,250,0.6)', marginBottom: '1rem',
+                  display: 'block', letterSpacing: '0.05em',
+                }}>
+                  {cat.icon}
+                </span>
+                <h3 style={{
+                  fontFamily: '"Cormorant Garamond", Georgia, serif',
+                  fontWeight: 300, fontSize: '1.8rem', letterSpacing: '0.04em',
+                  color: '#E5E7EB', margin: 0,
+                }}>
+                  {cat.title}
+                </h3>
               </div>
 
-              <h3 className="text-xl font-semibold text-white">{skill.name}</h3>
+              {/* Skills list */}
+              <motion.ul
+                variants={container}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
+              >
+                {cat.skills.map((skill) => (
+                  <motion.li
+                    key={skill.name}
+                    variants={item}
+                    style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                      padding: '1rem',
+                      background: 'rgba(59,130,246,0.03)',
+                      border: '1px solid rgba(255,255,255,0.03)',
+                      borderRadius: '8px',
+                      cursor: 'none',
+                      transition: 'background 0.3s, border-color 0.3s, transform 0.3s',
+                    }}
+                    onMouseEnter={e => {
+                      const el = e.currentTarget as HTMLLIElement
+                      el.style.background = 'rgba(59,130,246,0.12)'
+                      el.style.borderColor = 'rgba(59,130,246,0.3)'
+                      el.style.transform = 'translateY(-2px)'
+                    }}
+                    onMouseLeave={e => {
+                      const el = e.currentTarget as HTMLLIElement
+                      el.style.background = 'rgba(59,130,246,0.03)'
+                      el.style.borderColor = 'rgba(255,255,255,0.03)'
+                      el.style.transform = 'translateY(0)'
+                    }}
+                  >
+                    <span style={{
+                      fontFamily: 'DM Sans, sans-serif', fontWeight: 400,
+                      fontSize: '1.2rem', color: '#F3F4F6',
+                      letterSpacing: '0.02em',
+                    }}>
+                      {skill.name}
+                    </span>
+                    <span style={{
+                      fontFamily: 'DM Sans, sans-serif', fontWeight: 400,
+                      fontSize: '0.75rem', letterSpacing: '0.15em',
+                      textTransform: 'uppercase',
+                      color: '#60A5FA',
+                      paddingLeft: '1rem', textAlign: 'right', flexShrink: 0,
+                    }}>
+                      {skill.note}
+                    </span>
+                  </motion.li>
+                ))}
+              </motion.ul>
             </motion.div>
           ))}
         </div>

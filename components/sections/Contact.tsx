@@ -1,191 +1,125 @@
 'use client'
 
-import React from "react"
-
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Linkedin, Github, ExternalLink } from 'lucide-react'
-import { useState } from 'react'
+
+const contactLinks = [
+  {
+    label: 'anshuljagota03@gmail.com',
+    href: 'mailto:anshuljagota03@gmail.com',
+    type: 'email',
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/anshul-jagota-7a4a80323',
+    type: 'social',
+  },
+  {
+    label: 'GitHub',
+    href: 'https://github.com/ansh0014',
+    type: 'social',
+  },
+]
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  })
-
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log('[v0] Form submitted:', formData)
-    setSubmitted(true)
-    setTimeout(() => {
-      setFormData({ name: '', email: '', subject: '', message: '' })
-      setSubmitted(false)
-    }, 3000)
-  }
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: 'Email',
-      value: 'anshuljagota03@gmail.com',
-      link: 'mailto:anshuljagota03@gmail.com',
-    },
-    {
-      icon: Phone,
-      label: 'Phone',
-      value: '+91 7740031491',
-      link: 'tel:+917740031491',
-    },
-    {
-      icon: MapPin,
-      label: 'Location',
-      value: 'Patiala, Punjab, India',
-      link: '#',
-    },
-  ]
-
-  const socialLinks = [
-    {
-      icon: Linkedin,
-      label: 'LinkedIn',
-      link: 'https://www.linkedin.com/in/anshul-jagota-7a4a80323',
-      color: 'text-blue-400 hover:text-blue-300',
-    },
-    {
-      icon: Github,
-      label: 'GitHub',
-      link: 'https://github.com/ansh0014',
-      color: 'text-gray-300 hover:text-white',
-    },
-  ]
-
   return (
-    <section id="contact" className="relative py-32 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+    <section
+      id="contact"
+      style={{
+        minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: '8rem 1.5rem', background: '#0A0A0F',
+        position: 'relative', overflow: 'hidden',
+      }}
+    >
+      <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '640px' }}>
+        {/* Section label */}
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          style={{
+            fontFamily: 'DM Sans, sans-serif', fontWeight: 300,
+            fontSize: '0.75rem', letterSpacing: '0.25em', textTransform: 'uppercase',
+            color: 'rgba(59,130,246,0.8)', marginBottom: '2.5rem',
+          }}
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-gradient-primary mb-6">Let&apos;s Connect</h2>
-          <div className="flex justify-center">
-            <div className="w-20 h-1 bg-cyan-400 rounded-full" />
-          </div>
-          <p className="text-gray-400 text-lg mt-8 max-w-2xl mx-auto">
-            I&apos;m always interested in hearing about new opportunities and collaborations. Reach out anytime!
-          </p>
-        </motion.div>
+          Contact
+        </motion.p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="space-y-8"
-          >
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-8">Contact Information</h3>
-
-              <div className="space-y-6">
-                {contactInfo.map((info, index) => {
-                  const Icon = info.icon
-                  return (
-                    <motion.a
-                      key={index}
-                      href={info.link}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      whileHover={{ x: 10 }}
-                      className="flex items-start gap-4 group"
-                    >
-                      <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-cyan-400/10 border border-cyan-400/30 flex items-center justify-center group-hover:border-cyan-400/60 transition-all">
-                        <Icon className="w-6 h-6 text-cyan-400" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-500 uppercase tracking-wide">{info.label}</p>
-                        <p className="text-lg text-white font-medium mt-1 group-hover:text-cyan-400 transition-colors">{info.value}</p>
-                      </div>
-                    </motion.a>
-                  )
-                })}
-              </div>
-            </div>
-
-            <div className="pt-8 border-t border-cyan-400/20">
-              <h3 className="text-2xl font-bold text-white mb-8">Follow Me</h3>
-              <div className="flex gap-4">
-                {socialLinks.map((social, index) => {
-                  const Icon = social.icon
-                  return (
-                    <motion.a
-                      key={index}
-                      href={social.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      whileHover={{ scale: 1.2, y: -5 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`w-14 h-14 rounded-lg bg-cyan-400/10 border border-cyan-400/30 flex items-center justify-center transition-all hover:border-cyan-400/60 ${social.color}`}
-                    >
-                      <Icon className="w-6 h-6" />
-                    </motion.a>
-                  )
-                })}
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center justify-center p-10 bg-gradient-to-br from-cyan-400/10 via-transparent to-orange-500/10 rounded-2xl border border-cyan-400/20 relative overflow-hidden group hover:border-cyan-400/40 transition-all duration-300"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-            <div className="text-center relative z-10 space-y-6">
-              <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-orange-500">
-                Got a Vision? Let&apos;s Build It.
-              </h3>
-
-              <p className="text-gray-300 text-lg leading-relaxed max-w-md mx-auto">
-                I&apos;m always ready to collaborate on innovative projects that challenge the status quo.
-                From high-scale backends to complex system architectures—let&apos;s turn your ideas into deployed reality.
-              </p>
-
-              <div className="pt-4">
-                <span className="inline-block px-6 py-3 rounded-full bg-cyan-400/10 border border-cyan-400/30 text-cyan-400 font-semibold tracking-wide uppercase text-sm">
-                  Open for Collaboration
-                </span>
-              </div>
-            </div>
-          </motion.div>
-        </div >
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+        {/* Evocative heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-20 pt-12 border-t border-cyan-400/20 text-center"
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          style={{
+            fontFamily: '"Cormorant Garamond", Georgia, serif', fontWeight: 200,
+            fontSize: 'clamp(2.2rem, 6vw, 4.5rem)', letterSpacing: '0.06em',
+            lineHeight: 1.15, color: '#E5E7EB', marginBottom: '3.5rem', margin: '0 0 3.5rem 0',
+          }}
         >
-          <p className="text-gray-600 text-xs mt-4">© 2024 Anshul Jagota. All rights reserved.</p>
+          Let&apos;s build something
+          <br />
+          <em style={{ fontStyle: 'italic', color: '#9CA3AF' }}>that matters.</em>
+        </motion.h2>
+
+        {/* Contact links */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'center' }}
+        >
+          {contactLinks.map(link => (
+            <a
+              key={link.href}
+              href={link.href}
+              target={link.type === 'social' ? '_blank' : undefined}
+              rel={link.type === 'social' ? 'noopener noreferrer' : undefined}
+              style={{
+                fontFamily: link.type === 'email' ? 'DM Sans, sans-serif' : '"Cormorant Garamond", Georgia, serif',
+                fontWeight: link.type === 'email' ? 300 : 200,
+                fontSize: link.type === 'email' ? '1.05rem' : '1.3rem',
+                letterSpacing: link.type === 'email' ? '0.05em' : '0.1em',
+                color: link.type === 'email' ? '#E5E7EB' : '#9CA3AF',
+                textDecoration: 'none', borderBottom: '1px solid transparent', paddingBottom: '2px',
+                transition: 'color 0.3s, border-color 0.3s, box-shadow 0.3s',
+                display: 'inline-block', cursor: 'none',
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLAnchorElement
+                el.style.color = '#60A5FA'
+                el.style.borderBottomColor = 'rgba(59,130,246,0.4)'
+                if (link.type === 'email') el.style.boxShadow = '0 0 20px rgba(59,130,246,0.2)'
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLAnchorElement
+                el.style.color = link.type === 'email' ? '#E5E7EB' : '#9CA3AF'
+                el.style.borderBottomColor = 'transparent'
+                el.style.boxShadow = 'none'
+              }}
+            >
+              {link.label}
+            </a>
+          ))}
         </motion.div>
-      </div >
-    </section >
+
+        {/* Footer */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          style={{
+            fontFamily: 'DM Sans, sans-serif', fontWeight: 300,
+            fontSize: '0.72rem', letterSpacing: '0.12em', color: '#6B7280',
+            marginTop: '5rem', margin: '5rem 0 0 0',
+          }}
+        >
+          © 2026 Anshul Jagota
+        </motion.p>
+      </div>
+    </section>
   )
 }
